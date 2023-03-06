@@ -1,3 +1,12 @@
+:root {
+  --t1-font-size: 79px;
+  --t2-font-size: 19px;
+  --t3-font-size: 15px;
+  --t4-font-size: 14px;
+  --t5-font-size: 10px;
+  --card-width: 350px
+}
+
 html {
     box-sizing: border-box;
   }
@@ -12,4 +21,53 @@ html {
   
   body {
     font-family: 'Lato', sans-serif;
+  }
+
+  .btn {
+    width: 178px;
+    height: 38px;
+  }
+  
+  .btn-light {
+    background-color: #38a0d8;
+    filter: drop-shadow(0px 4.85px 4.85px rgba(0,0,0,.25) );
+  }
+  
+  .btn-dark {
+    background-color: #7f69f1;
+    filter: drop-shadow(0px 4.85px 4.85px rgba(0,0,0,.25) );
+  }
+
+  .t1 {
+    font-size: var(--t1-font-size);
+  }
+
+  .t2 {
+    font-size: var(--t2-font-size);
+    font-weight: 900;
+  }
+
+  .t3 {
+    font-size: var(--t3-font-size);
+    font-weight: 400;
+  }
+
+  .t4 {
+    font-size: var(--t4-font-size);
+    font-weight: 500;
+  }
+
+  .t5 {
+    font-size: var(--t5-font-size);
+    font-weight: 400;
+  }
+
+  @media screen and (min-width: 576px) {
+    :root {
+      --t1-font-size: 95px;
+      --t2-font-size: 23px;
+      --t3-font-size: 18px;
+      --t4-font-size: 16px;
+      --t5-font-size: 12px;
+    }
   }
