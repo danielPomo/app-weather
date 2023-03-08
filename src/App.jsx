@@ -1,16 +1,18 @@
 import './App.css'
 import Card from './components/Card'
-import Button from './components/Button'
-import Navbar from './components/Navbar'
+import Logo from './components/Logo'
+import Search from './components/Search'
+import DarkModeButton from './components/DarkModeButton'
 
 function App() {
 
 
   return (
     <div className="App">
-      <Navbar/>
+      <Logo/>
+      <DarkModeButton/>
+      <Search/>
       <Card/>
-      <Button/>
     </div>
   )
 }

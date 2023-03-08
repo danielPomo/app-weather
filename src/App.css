@@ -1,32 +1,43 @@
 .App {
+  padding: 10px;
   width: 100%;
   height: 100vh;
   background-image: radial-gradient(#d5f3ff, #51b4e8);
   display: grid;
-  grid-template-columns: 1fr var(--card-width) 1fr;
+  grid-template-columns: 1fr 80px;
+  grid-template-rows: var(--logo-height) var(--search-height) 1fr;
   grid-template-areas:
-  "navbar navbar navbar"
-  ". card ."
-  ". button .";
- 
- 
+  "logo button"
+  "search search"
+  "weather weather";
 }
 
-.btn {
-  grid-area: button;
+/* card */
+
+.weather {
+  grid-area: weather;
+  height: calc(100% - var(--logo-height) - var(--search-height));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 30px;
+
 }
 
 .card {
-  height: 200px;
+  padding: 30px 20px;
   width: var(--card-width);
+  height: 260px;
   background-image: linear-gradient(#e5f2ff, #d5f3ff 97.4%);
   filter: drop-shadow(0px 4.85px 4.85px rgba(0,0,0,.25) );
-  grid-area: card;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   row-gap: 10px;
+  border-radius: 50% 20% / 10% 40%;
+  color: #51b4e8;
 }
 
 .card__cityInfo {
@@ -34,16 +45,93 @@
   justify-content: space-between;
 }
 
-.navbar {
-  width: 100%;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  grid-area: navbar;
+.card__icon {
+  width: 80px;
+  position: absolute;
+  top: -20px;
+  right: 10px;
 }
 
+.card__temp--unit {
+  font-size: 30px;
+}
+
+/* search */
+
 .search {
+  position: relative;
   width: var(--card-width);
-  text-align: center;
+  grid-area: search;
+}
+
+.search__label {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  color: var(--text-light);
+}
+
+.search__input {
+  width: 100%;
+  border: 1px solid rgba(255,255,255,.7);
+  border-radius: 5px;
+  background-color: transparent;
+  padding: 5px;
+}
+
+/* logo */
+
+.logo {
+  grid-area: logo;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  width: max-content;
+}
+
+/* dark mode button */
+.darkMode {
+  grid-area: button;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.darkMode__checkbox {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border: none;
+  opacity: 0;
+}
+
+.darkMode__checkbox:checked ~ .darkMode__switch {
+  right: 4px;
+  background-color: #d5f3ff;
+  transform: translateX(0);
+}
+
+.darkMode__btn {
+  width: 60px;
+  height: 24px;
+  padding: 2px 3px;
+  border-radius: 20px;
+  border: 1px solid #eee;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.darkMode__switch {
+  right: calc(100% - 4px);
+  transform: translateX(100%);
+  height: 18px;
+  width: 18px;
+  background-color: #53388f;
+  border-radius: 50%;
+  position: absolute;
+  transition: .5s;
 }
