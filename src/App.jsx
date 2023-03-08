@@ -1,25 +1,30 @@
-import './App.css'
-import Card from './components/Card'
-import Logo from './components/Logo'
-import DarkModeButton from './components/DarkModeButton'
-import { useState } from 'react'
+import "./App.css";
+import Card from "./components/Card";
+import Logo from "./components/Logo";
+import DarkModeButton from "./components/DarkModeButton";
+import Loader from "./components/Loader";
+import { useState } from "react";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(true)
+  const [darkMode, setDarkMode] = useState(false);
   const switchMode = () => {
-    setDarkMode(!darkMode)
-  }
+    setDarkMode(!darkMode);
+  };
+  const [isLoading, setIsLoading] = useState(true);
+  const finishedLoading = () => {
+    setIsLoading(!isLoading);
+  };
+
   return (
-    <div className={(darkMode) ? "App dark-app" : "App light-app"}>
-      <Logo/>
-      <DarkModeButton
-      mode = { switchMode }
-      />
-      <Card
-      isDark = { darkMode }
-      />
-    </div>
-  )
+    <>
+      {isLoading && <Loader />}
+      <div className={darkMode ? "App dark-app" : "App light-app"}>
+        <Logo />
+        <DarkModeButton mode={switchMode} />
+        <Card loading={finishedLoading} isDark={darkMode} />
+      </div>
+    </>
+  );
 }
 
-export default App
+export default App;
