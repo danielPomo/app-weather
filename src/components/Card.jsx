@@ -5,6 +5,8 @@ import icons from "../data/icons.json"
 const Card = () => {
   const [location, setLocation] = useState({})
   const [isFarenheit, setIsFarenheit] = useState(false)
+  const [city, setCity] = useState("sucre")
+  const [update, setUpdate] = useState("sucre")
 
   useEffect(() => {
     let lat;
@@ -27,8 +29,36 @@ const Card = () => {
     });
   }, []);
 
+  useEffect( () => {
+    const urlByCityName = `https://api.openweathermap.org/data/2.5/weather?q=${update}&appid=ae8ff8a06ebcf8afb61d2d3db3e39a9d`
+    axios
+    .get(urlByCityName)
+    .then((resp) => {
+      setLocation(resp.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  }, [update])
+
   return (
     <div className="weather">
+      <div className="search">
+            <label className="search__label" htmlFor="search">
+            <i className='bx bx-search'></i> Buscar
+            </label>
+            <input
+            onChange={(e) => {
+              setCity(e.target.value);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                setUpdate(city);
+              }
+            }}
+            className="search__input" type="text"/>
+        </div>
       <div className="card">
         <p>
           <span className="card__temp t1"> {(isFarenheit)? `${parseInt(location.main?.temp * 9 / 5 - 459)} ` : `${parseInt(location.main?.temp) - 273} `} </span>
