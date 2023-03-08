@@ -1,4 +1,10 @@
+import axios from "axios";
+import { useState, useEffect } from "react";
+
+
 const Search = () => {
+
+
     return (
         <div className="search">
             <label className="search__label" htmlFor="search">
